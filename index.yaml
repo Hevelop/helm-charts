@@ -1,0 +1,13 @@
+apiVersion: v1
+entries:
+  ratelimit:
+  - apiVersion: v2
+    created: "2023-09-15T12:28:42.491634233Z"
+    description: Envoy Ratelimit Service Helm chart for Kubernetes
+    digest: 6d893ba32002250d5b70bd7f0e1b8953bf67607850ccc4db52962d83af9ea759
+    name: ratelimit
+    type: application
+    urls:
+    - https://github.com/Hevelop/helm-charts/releases/download/ratelimit-0.1.0/ratelimit-0.1.0.tgz
+    version: 0.1.0
+generated: "2023-09-15T12:28:42.491643033Z"
