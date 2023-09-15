@@ -1,0 +1,52 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "ratelimit.name" . }}
+spec:
+  selector:
+    matchLabels:
+      app: {{ include "ratelimit.name" . }}
+  template:
+    metadata:
+      labels:
+        app: {{ include "ratelimit.name" . }}
+    spec:
+      containers:
+        - image: {{ .Values.deployment.image.repository }}:{{ .Values.deployment.image.tag }}
+          imagePullPolicy: {{ .Values.deployment.image.pullPolicy }}
+          resources:
+{{ toYaml .Values.deployment.resources | indent 12 }}
+          name: ratelimit
+          command: ["/bin/ratelimit"]
+          env:
+            - name: LOG_LEVEL
+              value: {{ .Values.deployment.env.logLevel }}
+            - name: REDIS_SOCKET_TYPE
+              value: tcp
+            - name: REDIS_URL
+              value: {{ .Values.redis.address | quote }}
+            - name: USE_STATSD
+              value: "false"
+            - name: RUNTIME_ROOT
+              value: /data
+            - name: RUNTIME_SUBDIRECTORY
+              value: ratelimit
+            - name: RUNTIME_WATCH_ROOT
+              value: "false"
+            - name: RUNTIME_IGNOREDOTFILES
+              value: "true"
+            - name: HOST
+              value: "::"
+            - name: GRPC_HOST
+              value: "::"
+          ports:
+            - containerPort: 8080
+            - containerPort: 8081
+            - containerPort: 6070
+          volumeMounts:
+            - name: config-volume
+              mountPath: /data/ratelimit/config
+      volumes:
+        - name: config-volume
+          configMap:
+            name: {{ include "ratelimit.name" . }}-config

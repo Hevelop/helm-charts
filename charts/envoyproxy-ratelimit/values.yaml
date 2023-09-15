@@ -1,0 +1,42 @@
+nameOverride:
+
+deployment:
+  image:
+    repository: envoyproxy/ratelimit
+    tag: master
+    pullPolicy: IfNotPresent
+  resources: {}
+  env:
+    logLevel: debug
+
+hpa:
+  enabled: false
+  minReplicas: 2
+  maxReplicas: 10
+  metrics:
+    - name: cpu
+      type: Resource
+      target:
+        averageUtilization: 80
+        type: Utilization
+
+pdb:
+  enabled: false
+  minAvailable:
+  maxUnavailable: "30%"
+
+configMap: |
+  domain: sample-domain
+  descriptors:
+    - key: SAMPLE_KEY      
+      rate_limit:
+        unit: minute
+        requests_per_unit: 100
+      shadow_mode: true
+
+redis:
+  address:
+
+  # deploy a simple redis pod, not meant for production
+  enabled: false
+  resources: {}

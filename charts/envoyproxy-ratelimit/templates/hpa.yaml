@@ -1,0 +1,24 @@
+{{- if .Values.hpa.enabled }}
+apiVersion: autoscaling/v2beta2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: {{ include "ratelimit.name" . }}
+  labels:
+    app: {{ include "ratelimit.name" . }}
+spec:
+  maxReplicas: {{ .Values.hpa.maxReplicas }}
+  metrics:
+    {{- range $index, $val := .Values.hpa.metrics }}
+    - resource:
+        name: {{ $val.name }}
+        target:
+          averageUtilization: {{ $val.target.averageUtilization }}
+          type: {{ $val.target.type }}
+      type: {{ $val.type }}
+  {{- end }}
+  minReplicas: {{ .Values.hpa.minReplicas }}
+  scaleTargetRef:
+    apiVersion: apps/v1beta2
+    kind: Deployment
+    name: {{ include "ratelimit.name" . }}
+{{- end }}

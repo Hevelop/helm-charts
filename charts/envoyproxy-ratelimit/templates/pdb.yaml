@@ -1,0 +1,18 @@
+{{- if and (.Values.pdb.enabled) (.Values.hpa.enabled) (gt .Values.hpa.minReplicas 1.0) (gt .Values.hpa.maxReplicas 1.0) }}
+apiVersion: "policy/v1"
+kind: PodDisruptionBudget
+metadata:
+  name: {{ include "ratelimit.name" . }}
+spec:
+  {{- if .Values.pdb.maxUnavailable }}
+  {{- $formattedValue := include "pdb.formatValue" .Values.pdb.maxUnavailable }}
+  maxUnavailable: {{ $formattedValue }}
+  {{- end }}
+  {{- if .Values.pdb.minAvailable }}
+  {{- $formattedValue := include "pdb.formatValue" .Values.pdb.minAvailable }}
+  minAvailable: {{ $formattedValue }}
+  {{- end }}
+  selector:
+    matchLabels:
+      app: {{ include "ratelimit.name" . }}
+{{- end }}
