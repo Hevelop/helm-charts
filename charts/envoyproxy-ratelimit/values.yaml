@@ -8,6 +8,9 @@ deployment:
   resources: {}
   env:
     logLevel: debug
+    useStatsD: "false"
+    statsDHost: ""
+    statsDPort: "9125"
 
 hpa:
   enabled: false

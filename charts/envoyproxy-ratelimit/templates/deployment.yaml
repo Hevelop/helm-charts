@@ -26,7 +26,11 @@ spec:
             - name: REDIS_URL
               value: {{ .Values.redis.address | quote }}
             - name: USE_STATSD
-              value: "false"
+              value: {{ .Values.deployment.env.useStatsD | quote }}
+            - name: STATSD_HOST
+              value: {{ .Values.deployment.env.statsDHost | quote }}
+            - name: STATSD_PORT
+              value: {{ .Values.deployment.env.statsDPort | quote }}
             - name: RUNTIME_ROOT
               value: /data
             - name: RUNTIME_SUBDIRECTORY
