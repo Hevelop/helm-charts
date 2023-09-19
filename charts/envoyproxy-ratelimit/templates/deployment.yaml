@@ -15,7 +15,7 @@ spec:
         - image: {{ .Values.deployment.image.repository }}:{{ .Values.deployment.image.tag }}
           imagePullPolicy: {{ .Values.deployment.image.pullPolicy }}
           resources:
-{{ toYaml .Values.deployment.resources | indent 12 }}
+            {{- toYaml .Values.deployment.resources | nindent 12 }}
           name: ratelimit
           command: ["/bin/ratelimit"]
           env:
@@ -47,6 +47,10 @@ spec:
             - containerPort: 8080
             - containerPort: 8081
             - containerPort: 6070
+          livenessProbe:
+            {{- toYaml .Values.deployment.livenessProbe | nindent 12 }}
+          readinessProbe:
+            {{- toYaml .Values.deployment.readinessProbe | nindent 12 }}
           volumeMounts:
             - name: config-volume
               mountPath: /data/ratelimit/config

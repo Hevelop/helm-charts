@@ -11,6 +11,14 @@ deployment:
     useStatsD: "false"
     statsDHost: ""
     statsDPort: "9125"
+  livenessProbe:
+    httpGet:
+      path: /healthcheck
+      port: 8080
+  readinessProbe:
+    httpGet:
+      path: /healthcheck
+      port: 8080
 
 hpa:
   enabled: false
