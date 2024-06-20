@@ -28,6 +28,17 @@ entries:
     urls:
     - https://github.com/Hevelop/helm-charts/releases/download/envoyproxy-ratelimit-0.2.0/envoyproxy-ratelimit-0.2.0.tgz
     version: 0.2.0
+  grpc-gateway:
+  - apiVersion: v2
+    appVersion: 0.1.0
+    created: "2024-06-20T09:08:42.24253645Z"
+    description: A Helm chart for Kubernetes
+    digest: 39ca26a03c1c814c30c2af3281411cc7484162169d9ce4e1a68ad06f3876a59d
+    name: grpc-gateway
+    type: application
+    urls:
+    - https://github.com/Hevelop/helm-charts/releases/download/grpc-gateway-0.1.0/grpc-gateway-0.1.0.tgz
+    version: 0.1.0
   ratelimit:
   - apiVersion: v2
     created: "2023-09-15T12:28:42.491634233Z"
@@ -38,4 +49,4 @@ entries:
     urls:
     - https://github.com/Hevelop/helm-charts/releases/download/ratelimit-0.1.0/ratelimit-0.1.0.tgz
     version: 0.1.0
-generated: "2023-09-19T08:01:13.843333553Z"
+generated: "2024-06-20T09:08:42.242552069Z"
