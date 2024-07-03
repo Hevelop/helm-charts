@@ -1,5 +1,5 @@
 {{- if and (.Values.pdb.enabled) (.Values.hpa.enabled) (gt .Values.hpa.minReplicas 1.0) (gt .Values.hpa.maxReplicas 1.0) }}
-apiVersion: {{ ternary "policy/v1" "policy/v1beta1" (semverCompare ">=1.9" .Capabilities.KubeVersion.Version) }}
+apiVersion: {{ ternary "policy/v1" "policy/v1beta1" (semverCompare ">=1.9" (include "ratelimit.capabilities.kubeVersion" .)) }}
 kind: PodDisruptionBudget
 metadata:
   name: {{ include "ratelimit.name" . }}

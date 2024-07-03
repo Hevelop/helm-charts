@@ -1,5 +1,5 @@
 {{- if .Values.hpa.enabled }}
-apiVersion: {{ ternary "autoscaling/v2" "autoscaling/v2beta2" (semverCompare ">=1.23" .Capabilities.KubeVersion.Version) }}
+apiVersion: {{ ternary "autoscaling/v2" "autoscaling/v2beta2" (semverCompare ">=1.23" (include "ratelimit.capabilities.kubeVersion" .)) }}
 kind: HorizontalPodAutoscaler
 metadata:
   name: {{ include "ratelimit.name" . }}

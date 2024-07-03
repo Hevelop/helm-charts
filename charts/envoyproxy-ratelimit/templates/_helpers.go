@@ -16,3 +16,11 @@ Format pdb.
 {{- print $valueToFormat }}
 {{- end }}
 {{- end }}
+
+
+{{/*
+Kubernetes version
+*/}}
+{{- define "ratelimit.capabilities.kubeVersion" -}}
+{{- default .Capabilities.KubeVersion.Version .Values.kubeVersion -}}
+{{- end -}}
