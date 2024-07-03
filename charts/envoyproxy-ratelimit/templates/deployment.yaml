@@ -43,6 +43,9 @@ spec:
               value: "::"
             - name: GRPC_HOST
               value: "::"
+            {{- if .Values.deployment.additionalEnv }}
+            {{- toYaml .Values.deployment.additionalEnv | nindent 12 }}
+            {{- end }}
           ports:
             - containerPort: 8080
             - containerPort: 8081

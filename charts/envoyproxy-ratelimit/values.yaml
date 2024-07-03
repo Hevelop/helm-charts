@@ -11,6 +11,7 @@ deployment:
     useStatsD: "false"
     statsDHost: ""
     statsDPort: "9125"
+  additionalEnv: {}
   livenessProbe:
     httpGet:
       path: /healthcheck
