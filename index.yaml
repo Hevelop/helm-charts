@@ -2,6 +2,15 @@ apiVersion: v1
 entries:
   envoyproxy-ratelimit:
   - apiVersion: v2
+    created: "2024-07-03T14:43:13.439424105Z"
+    description: Envoy Ratelimit Service Helm chart for Kubernetes
+    digest: caa9508e7b4ccbd8739153c04803dc914a566bc4056aa2db71b69f2d84bafc90
+    name: envoyproxy-ratelimit
+    type: application
+    urls:
+    - https://github.com/Hevelop/helm-charts/releases/download/envoyproxy-ratelimit-0.3.1/envoyproxy-ratelimit-0.3.1.tgz
+    version: 0.3.1
+  - apiVersion: v2
     created: "2024-07-03T13:33:32.892741889Z"
     description: Envoy Ratelimit Service Helm chart for Kubernetes
     digest: 796fd6e9b9645d8adccdf4c8ea1bec23240fb92a3efc544f585860cbec8ede9f
@@ -37,4 +46,4 @@ entries:
     urls:
     - https://github.com/Hevelop/helm-charts/releases/download/envoyproxy-ratelimit-0.2.0/envoyproxy-ratelimit-0.2.0.tgz
     version: 0.2.0
-generated: "2024-07-03T13:33:32.892759422Z"
+generated: "2024-07-03T14:43:13.439445696Z"
